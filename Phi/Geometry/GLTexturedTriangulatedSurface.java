@@ -12,6 +12,10 @@ package Phi.Geometry;
 // ////////////////////////////////////////////////////////////////
 
 
+/**
+ * 
+ * @author phara0h
+ */
 abstract public class GLTexturedTriangulatedSurface extends GLTriangulatedSurface
 {
 	/////////////////////////////////////////////
@@ -24,12 +28,20 @@ abstract public class GLTexturedTriangulatedSurface extends GLTriangulatedSurfac
     //              methods                   //
     ////////////////////////////////////////////
     
+    /**
+     * 
+     */
     public GLTexturedTriangulatedSurface()
     {
     		super();
             this.texcoordinates=null;
     }
     
+    /**
+     * 
+     * @param udiv
+     * @param vdiv
+     */
     public GLTexturedTriangulatedSurface(int udiv,int vdiv)
     {
         super(udiv,vdiv);
@@ -37,6 +49,9 @@ abstract public class GLTexturedTriangulatedSurface extends GLTriangulatedSurfac
 
     }
 
+    /**
+     * 
+     */
     public void setTexcoords()
     {
         float uincr,vincr;
@@ -71,11 +86,18 @@ abstract public class GLTexturedTriangulatedSurface extends GLTriangulatedSurfac
         }
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getTexcoords()
     {
     	return this.texcoordinates;
     }
     
+    /**
+     * 
+     */
     public void printTexcoordinates()
     {
     	int j=0;

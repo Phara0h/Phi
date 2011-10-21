@@ -22,18 +22,37 @@ import javax.media.opengl.*;
 
 import com.jogamp.opengl.util.GLBuffers;
 
+/**
+ * 
+ * @author phara0h
+ */
 public class VBO
 {
     /////////////////////////////////////////////
     //                  properties             //
     /////////////////////////////////////////////
 	
-	public  FloatBuffer vertexDataBuffer=null, 
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    public  FloatBuffer vertexDataBuffer=null, 
 						normalDataBuffer=null, 
 						colorDataBuffer=null, 
 						textureDataBuffer=null;
 	
-	public  int			vertexBufferObjectID;
+    /**
+     * 
+     */
+    public  int			vertexBufferObjectID;
 	
     ////////////////////////////////////////////
     //              methods                   //
@@ -41,7 +60,12 @@ public class VBO
 	
 	// initialize buffer with vertex data
 	// input: GL3 context gl, float array of vertex data vertices
-	public void init(GL3 gl,float[] vertices)
+        /**
+         * 
+         * @param gl
+         * @param vertices
+         */
+        public void init(GL3 gl,float[] vertices)
     {
 		// put vertex info into buffer
         this.vertexDataBuffer = GLBuffers.newDirectFloatBuffer(vertices.length);
@@ -68,7 +92,13 @@ public class VBO
 	// initialize buffer with vertex and normal data
 	// input: GL3 context gl, float array of vertex data vertices 
 	//        and float array of corresponding normal data normals
-	public void init(GL3 gl, float[] vertices, float[] normals)
+        /**
+         * 
+         * @param gl
+         * @param vertices
+         * @param normals
+         */
+        public void init(GL3 gl, float[] vertices, float[] normals)
 	{
 		// put vertex info into buffer
         this.vertexDataBuffer = GLBuffers.newDirectFloatBuffer(vertices.length);
@@ -101,7 +131,14 @@ public class VBO
 	// input: GL3 context gl, float array of vertex data, vertices, 
 	//        float array of corresponding normal data, normals and
 	//		  float array of corresponding vertex colors, colors.
-	public void init(GL3 gl, float[] vertices, float[] normals, float[] colors)
+        /**
+         * 
+         * @param gl
+         * @param vertices
+         * @param normals
+         * @param colors
+         */
+        public void init(GL3 gl, float[] vertices, float[] normals, float[] colors)
 	{	
 		// put vertex info into buffer
         this.vertexDataBuffer = GLBuffers.newDirectFloatBuffer(vertices.length);
@@ -151,7 +188,15 @@ public class VBO
 	//        float array of corresponding normal data, normals,
 	//		  float array of corresponding vertex colors, colors, and
 	//		  float array of corrsponding  texture coordinates, textures
-	public void init(GL3 gl, float[] vertices, float[] normals, float[] colors, float[] textures)
+        /**
+         * 
+         * @param gl
+         * @param vertices
+         * @param normals
+         * @param colors
+         * @param textures
+         */
+        public void init(GL3 gl, float[] vertices, float[] normals, float[] colors, float[] textures)
 	{	
 		long offset=0;
 		

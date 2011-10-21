@@ -4,6 +4,10 @@ package Phi.Geometry;
 import java.awt.Color;
 import javax.media.opengl.*;
 
+/**
+ * 
+ * @author phara0h
+ */
 public class GLGrid extends GLGeometry
 {
 
@@ -11,6 +15,14 @@ public class GLGrid extends GLGeometry
     float minx,maxx,minz,maxz,tic;
     
     // methods
+    /**
+     * 
+     * @param minx
+     * @param maxx
+     * @param minz
+     * @param maxz
+     * @param tic
+     */
     public GLGrid(float minx, float maxx, float minz, float maxz, float tic)
 
     {
@@ -24,6 +36,17 @@ public class GLGrid extends GLGeometry
         this.setVertices();
     }
 
+    /**
+     * 
+     * @param minx
+     * @param maxx
+     * @param minz
+     * @param maxz
+     * @param tic
+     * @param red
+     * @param green
+     * @param blue
+     */
     public GLGrid(float minx, float maxx, float minz, float maxz, float tic,
                 float red, float green, float blue)
     {
@@ -40,6 +63,15 @@ public class GLGrid extends GLGeometry
         }
     }
 
+    /**
+     * 
+     * @param minx
+     * @param maxx
+     * @param minz
+     * @param maxz
+     * @param tic
+     * @param aColor
+     */
     public GLGrid(float minx, float maxx, float minz, float maxz, float tic,
                 Color aColor)
     {
@@ -58,6 +90,9 @@ public class GLGrid extends GLGeometry
         }
     }
     
+    /**
+     * 
+     */
     public void setVertices()
     {
     	float incr;

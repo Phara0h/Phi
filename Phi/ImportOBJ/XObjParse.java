@@ -58,12 +58,21 @@ public class XObjParse
     // Vars
     private ArrayList<GLObjGeometry> geomtryObjects_m = new ArrayList<GLObjGeometry>();
     // Options
+    /**
+     * 
+     */
     public boolean groups = false;
 
+    /**
+     * 
+     */
     public XObjParse()
     {
     }
 
+    /**
+     * 
+     */
     public void TestReadFile()
     {
         String data;

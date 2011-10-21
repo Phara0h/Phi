@@ -19,24 +19,39 @@ public abstract class Geometry
     /////////////////////////////////////////////
 	
 	
-	protected float vertices[]; // the vertices of the polygon
+    /**
+     * 
+     */
+    protected float vertices[]; // the vertices of the polygon
 	
 	
-	protected float normals[]; // and the normals
+    /**
+     * 
+     */
+    protected float normals[]; // and the normals
 	
 	// implement this to load vertex information into the array vertices[]
-	protected void setVertices()
+        /**
+         * 
+         */
+        protected void setVertices()
 	{
 		
 	}
 	
 	// implement this to load vertex and normal information into the arrays vertices[] & normals[]
-	protected void setVerticesAndNormals()
+        /**
+         * 
+         */
+        protected void setVerticesAndNormals()
 	{
 		
 	}
 	
-	public void printVertices()
+        /**
+         * 
+         */
+        public void printVertices()
 	{
 		for(int i=0;i<this.vertices.length;i=i+4)
 		{
@@ -44,7 +59,10 @@ public abstract class Geometry
 		}
 	}
 	
-	public void printNormals()
+        /**
+         * 
+         */
+        public void printNormals()
 	{
 		for(int i=0;i<this.normals.length;i=i+3)
 		{
@@ -52,7 +70,10 @@ public abstract class Geometry
 		}
 	}
 	
-	public void printVerticesAndNormals()
+        /**
+         * 
+         */
+        public void printVerticesAndNormals()
 	{
 		int vpos=0, npos=0;
 		for(int i=0;i<this.vertices.length/4;i++)

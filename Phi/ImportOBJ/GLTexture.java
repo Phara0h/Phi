@@ -18,13 +18,25 @@ public class GLTexture
 {
 
     private String filePath;
+    /**
+     * 
+     */
     public int index;
     
+    /**
+     * 
+     * @param fpath
+     */
     public GLTexture(String fpath)
     {
         filePath = fpath;
     }
 
+    /**
+     * 
+     * @param gl
+     * @param textures
+     */
     public void SetTexture(GL gl, int[] textures)
     {
         index = textures.length-1;

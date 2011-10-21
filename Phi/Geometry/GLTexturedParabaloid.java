@@ -13,6 +13,10 @@ package Phi.Geometry;
 //                                                               //
 // ////////////////////////////////////////////////////////////////
 
+/**
+ * 
+ * @author phara0h
+ */
 public class GLTexturedParabaloid extends GLTexturedParametricSurface
 {
     private static final double TWO_PI=2*Math.PI;
@@ -21,17 +25,34 @@ public class GLTexturedParabaloid extends GLTexturedParametricSurface
     //              methods                   //
     ////////////////////////////////////////////
     
+    /**
+     * 
+     * @param udiv
+     * @param vdiv
+     */
     public GLTexturedParabaloid(int udiv,int vdiv)
     {
         super(udiv,vdiv);
     }
     
+    /**
+     * 
+     * @param u
+     * @param v
+     * @return
+     */
     public float x(int u,int v)
     {
         //return u/(float)this.udiv-0.5f ;
         return v*(float)Math.cos(TWO_PI*u/(float)this.udiv)/(float)this.vdiv;
     }
     
+    /**
+     * 
+     * @param u
+     * @param v
+     * @return
+     */
     public float y(int u, int v)
     {
         float s,t;
@@ -42,6 +63,12 @@ public class GLTexturedParabaloid extends GLTexturedParametricSurface
         
     }
     
+    /**
+     * 
+     * @param u
+     * @param v
+     * @return
+     */
     public float z(int u,int v)
     {
         //return v/(float)this.vdiv-0.5f;

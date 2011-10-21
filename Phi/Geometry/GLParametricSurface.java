@@ -12,18 +12,33 @@ package Phi.Geometry;
 //                                                               //
 ///////////////////////////////////////////////////////////////////
 
+/**
+ * 
+ * @author phara0h
+ */
 public abstract class GLParametricSurface extends GLTriangulatedSurface
 {    
-	GLParametricSurface()
+    /**
+     * 
+     */
+    public GLParametricSurface()
 	{
 		
 	}
 	
-    GLParametricSurface(int udiv, int vdiv)
+    /**
+     * 
+     * @param udiv
+     * @param vdiv
+     */
+    public GLParametricSurface(int udiv, int vdiv)
     {
         super(udiv,vdiv);
     }
     
+    /**
+     * 
+     */
     protected void setVertices()
     {   
         for(int v=0;v<this.vdiv;v++)
@@ -44,9 +59,27 @@ public abstract class GLParametricSurface extends GLTriangulatedSurface
             }
         }
     }    
+    /**
+     * 
+     * @param u
+     * @param v
+     * @return
+     */
     protected  abstract float x(int u, int v);
 	
-	protected  abstract float y(int u, int v);
+    /**
+     * 
+     * @param u
+     * @param v
+     * @return
+     */
+    protected  abstract float y(int u, int v);
 	
-	protected  abstract float z(int u, int v);
+    /**
+     * 
+     * @param u
+     * @param v
+     * @return
+     */
+    protected  abstract float z(int u, int v);
 }

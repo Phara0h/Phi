@@ -18,6 +18,10 @@ import java.io.*;
 import java.nio.*;
 import java.util.*;
 
+/**
+ * 
+ * @author phara0h
+ */
 public class ShaderControl
 {
 	
@@ -27,10 +31,25 @@ public class ShaderControl
 	
 	private int     	vertexShaderProgramID;
 	private int     	fragmentShaderProgramID;
-	public int     		shaderProgramID;
-	public  String[] 	vsrc;
-	public  String[] 	fsrc;
-	public  HashMap<String,Integer> attribute, uniform;
+        /**
+         * 
+         */
+        public int     		shaderProgramID;
+        /**
+         * 
+         */
+        public  String[] 	vsrc;
+        /**
+         * 
+         */
+        public  String[] 	fsrc;
+        /**
+         * 
+         */
+        /**
+         * 
+         */
+        public  HashMap<String,Integer> attribute, uniform;
 
 	////////////////////////////////////////////
     //              methods                   //
@@ -40,7 +59,11 @@ public class ShaderControl
 	// attempts to initialize shader code that is 
 	// part of this object
 	// input: GL context
-	public void init( GL3 gl )
+        /**
+         * 
+         * @param gl
+         */
+        public void init( GL3 gl )
 	{
 		try
 		{
@@ -58,7 +81,12 @@ public class ShaderControl
 	// read in shader source from a file
 	// input:   name - filename for src code
 	// returns: array of strings containing code
-	public String[] loadShaderSrc( String name )
+        /**
+         * 
+         * @param name
+         * @return
+         */
+        public String[] loadShaderSrc( String name )
 	{
 		StringBuilder sb = new StringBuilder();
 		try
@@ -174,7 +202,12 @@ public class ShaderControl
 	// causes gpu to activate this shader
 	// input: GL context
 	// returns: shader program ID
-    public int useShader( GL3 gl )
+        /**
+         * 
+         * @param gl
+         * @return
+         */
+        public int useShader( GL3 gl )
 	{
 		gl.glUseProgram(this.shaderProgramID);
 		return this.shaderProgramID;
@@ -182,12 +215,21 @@ public class ShaderControl
 
     // causes gpu to deactivate this shader
     // input: GL context
-	public void dontUseShader( GL3 gl )
+    /**
+     * 
+     * @param gl
+     */
+    public void dontUseShader( GL3 gl )
 	{
 		gl.glUseProgram(0);
 	}
 	
-	public void setAttributes(GL3 gl,String a[])
+    /**
+     * 
+     * @param gl
+     * @param a
+     */
+    public void setAttributes(GL3 gl,String a[])
 	{
 		if(this.attribute==null)
 		{
@@ -200,7 +242,12 @@ public class ShaderControl
 		}
 	}
 	
-	public void setAttribute(GL3 gl,String a)
+    /**
+     * 
+     * @param gl
+     * @param a
+     */
+    public void setAttribute(GL3 gl,String a)
 	{
 		if(this.attribute==null)
 		{
@@ -210,7 +257,12 @@ public class ShaderControl
 		this.attribute.put(a,gl.glGetAttribLocation(this.shaderProgramID, a));
 	}
 	
-	public void setUniforms(GL3 gl,String u[])
+        /**
+         * 
+         * @param gl
+         * @param u
+         */
+        public void setUniforms(GL3 gl,String u[])
 	{
 		if(this.attribute==null)
 		{
@@ -223,7 +275,12 @@ public class ShaderControl
 		}
 	}
 	
-	public void setUniform(GL3 gl,String u)
+        /**
+         * 
+         * @param gl
+         * @param u
+         */
+        public void setUniform(GL3 gl,String u)
 	{
 		if(this.uniform==null)
 		{

@@ -14,39 +14,91 @@ import java.util.ArrayList;
 public class GLObjGeometry extends GLGeometry
 {
 
+    /**
+     * 
+     */
     public class Face
     {
+        /**
+         * 
+         */
         public int v1 = 0;
+        /**
+         * 
+         */
         public int v2 = 0;
+        /**
+         * 
+         */
         public int v3 = 0;
+        /**
+         * 
+         */
         public int v4 = 0;
     }
     
+    /**
+     * 
+     */
     public class Vert
     {
+        /**
+         * 
+         */
         public int x = 0;
+        /**
+         * 
+         */
         public int y = 0;
+        /**
+         * 
+         */
         public int z = 0;
+        /**
+         * 
+         */
         public int w = 0;
     }
     
     
+    /**
+     * 
+     */
     public String GroupName;
+    /**
+     * 
+     */
     public ArrayList<Face> faces = new ArrayList<Face>();
+    /**
+     * 
+     */
     public ArrayList<Vert> verts = new ArrayList<Vert>();
 
+    /**
+     * 
+     */
     public GLObjGeometry()
     {
         this.vertices = new float[(faces.size()*4)*4];
         
     }
     
+    /**
+     * 
+     */
     @Override
     public void setVertices()
     {
         
     }
     
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param z
+     * @param w
+     */
     public void AddVert(int x, int y, int z, int w)
     {
         Vert v = new Vert();
@@ -57,6 +109,13 @@ public class GLObjGeometry extends GLGeometry
         verts.add(v);
     }
     
+    /**
+     * 
+     * @param v1
+     * @param v2
+     * @param v3
+     * @param v4
+     */
     public void AddFace(int v1, int v2, int v3, int v4)
     {
         Face f = new Face();

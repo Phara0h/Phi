@@ -46,6 +46,10 @@ package Phi.Light;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author phara0h
+ */
 public class Light
 {
     /////////////////////////////////////////////
@@ -53,16 +57,37 @@ public class Light
     /////////////////////////////////////////////
     
     // max color values
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     protected static float      MAXRED=   (float)Color.white.getRed(),
                                 MAXGREEN= (float)Color.white.getGreen(),
                                 MAXBLUE=  (float)Color.white.getBlue();
     
     // light colors
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     protected float[]           ambient,
                                 diffuse,
                                 specular;
                 
     // light position            
+    /**
+     * 
+     */
     protected float[]           position;
     
     
@@ -70,6 +95,9 @@ public class Light
     //              methods                   //
     ////////////////////////////////////////////
     
+    /**
+     * 
+     */
     public Light()
     {
         this.ambient= new float[4];
@@ -85,6 +113,13 @@ public class Light
         this.setPosition(1.0f,1.0f,1.0f,1.0f);        
     }
     
+    /**
+     * 
+     * @param r
+     * @param g
+     * @param b
+     * @param a
+     */
     public void setAmbient(float r,float g,float b,float a)
     {
         this.ambient[0]=r;
@@ -93,6 +128,10 @@ public class Light
         this.ambient[3]=a;
     }
     
+    /**
+     * 
+     * @param c
+     */
     public void setAmbient(Color c)
     {
         this.ambient[0]=c.getRed()/MAXRED;
@@ -101,6 +140,10 @@ public class Light
         this.ambient[3]=1.0f;
     }
 
+    /**
+     * 
+     * @param c
+     */
     public void setAmbient(float[] c)
     {
         this.ambient[0]=c[0];
@@ -108,6 +151,13 @@ public class Light
         this.ambient[2]=c[2];
         this.ambient[3]=c[3];
     }
+    /**
+     * 
+     * @param r
+     * @param g
+     * @param b
+     * @param a
+     */
     public void setDiffuse(float r,float g,float b,float a)
     {
         this.diffuse[0]=r;
@@ -116,6 +166,10 @@ public class Light
         this.diffuse[3]=a;
     }
 
+    /**
+     * 
+     * @param c
+     */
     public void setDiffuse(Color c)
     {
         this.diffuse[0]=c.getRed()/MAXRED;
@@ -124,6 +178,10 @@ public class Light
         this.diffuse[3]=1.0f;
     }    
 
+    /**
+     * 
+     * @param c
+     */
     public void setDiffuse(float[] c)
     {
         this.diffuse[0]=c[0];
@@ -132,6 +190,13 @@ public class Light
         this.diffuse[3]=c[3];
     }
     
+    /**
+     * 
+     * @param r
+     * @param g
+     * @param b
+     * @param a
+     */
     public void setSpecular(float r,float g,float b,float a)
     {
         this.specular[0]=r;
@@ -140,6 +205,10 @@ public class Light
         this.specular[3]=a;
     }
     
+    /**
+     * 
+     * @param c
+     */
     public void setSpecular(Color c)
     {
         this.specular[0]=c.getRed()/MAXRED;
@@ -148,6 +217,10 @@ public class Light
         this.specular[3]=1.0f;
     }
 
+    /**
+     * 
+     * @param c
+     */
     public void setSpecular(float[] c)
     {
         this.specular[0]=c[0];
@@ -156,21 +229,40 @@ public class Light
         this.specular[3]=c[3];
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getAmbient()
     {
         return this.ambient;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getDiffuse()
     {
         return this.diffuse;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getSpecular()
     {
         return this.specular;
     }
     
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param z
+     * @param w
+     */
     public void setPosition(float x,float y,float z,float w)
     {
         this.position[0]=x;
@@ -179,6 +271,10 @@ public class Light
         this.position[3]=w;
     }
     
+    /**
+     * 
+     * @param p
+     */
     public void setPosition(float[] p)
     {
         this.position[0]=p[0];
@@ -187,6 +283,10 @@ public class Light
         this.position[3]=p[3];
     } 
     
+    /**
+     * 
+     * @return
+     */
     public float[] getPosition()
     {
         return this.position;

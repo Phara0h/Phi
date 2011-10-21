@@ -21,12 +21,17 @@ package Phi.Geometry;
 
 
 import Phi.*;
+import Phi.Space.*;
 import java.awt.Color;
 import javax.media.opengl.*;
 
 import com.jogamp.opengl.util.GLBuffers;
 
 
+/**
+ * 
+ * @author phara0h
+ */
 public abstract class GLGeometry extends Geometry 
 {
 	/////////////////////////////////////////////
@@ -61,7 +66,10 @@ public abstract class GLGeometry extends Geometry
     //              methods                   //
     ////////////////////////////////////////////
 	
-	public GLGeometry()
+        /**
+         * 
+         */
+        public GLGeometry()
 	{
 		// default display mode
 		this.setMode(GL.GL_POINTS);
@@ -76,7 +84,11 @@ public abstract class GLGeometry extends Geometry
 		this.texcoordinates=null;
 	}
 	
-	public void setVBO(GL3 gl)
+        /**
+         * 
+         * @param gl
+         */
+        public void setVBO(GL3 gl)
 	{
 		myVBO=new VBO();
 		if(this.normals==null)
@@ -97,12 +109,20 @@ public abstract class GLGeometry extends Geometry
 		}
 	}
 	
-	public void setMode(int mode)
+        /**
+         * 
+         * @param mode
+         */
+        public void setMode(int mode)
 	{
 		this.mode=mode;
 	}
 		
-	public int getMode()
+        /**
+         * 
+         * @return
+         */
+        public int getMode()
 	{
 		return this.mode;
 	}
@@ -113,12 +133,22 @@ public abstract class GLGeometry extends Geometry
 		return cf;
 	}
 	
-	public void setColor(Color aColor)
+        /**
+         * 
+         * @param aColor
+         */
+        public void setColor(Color aColor)
     {
     	this.my_color=this.getColorComponants(aColor);
     }
     
-    public void setColor(float red, float green, float blue)
+        /**
+         * 
+         * @param red
+         * @param green
+         * @param blue
+         */
+        public void setColor(float red, float green, float blue)
     {
     	this.my_color[0]=red;
     	this.my_color[1]=green;
@@ -126,6 +156,13 @@ public abstract class GLGeometry extends Geometry
     	this.my_color[3]=1.0f;
     }
     
+    /**
+     * 
+     * @param red
+     * @param green
+     * @param blue
+     * @param a
+     */
     public void setColor(float red, float green, float blue, float a)
     {
     	this.my_color[0]=red;
@@ -134,26 +171,49 @@ public abstract class GLGeometry extends Geometry
     	this.my_color[3]=a;
     }
     
+    /**
+     * 
+     * @param colors
+     */
     public void setColors(float[] colors)
     {
     	this.colors=colors;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getColor()
     {
     	return this.my_color;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getColors()
     {
     	return this.colors;
     }
     
+    /**
+     * 
+     * @param aColor
+     */
     public void setAmbient(Color aColor)
     {
     	this.ambient=this.getColorComponants(aColor);
     }
     
+    /**
+     * 
+     * @param red
+     * @param green
+     * @param blue
+     * @param a
+     */
     public void setAmbient(float red, float green, float blue, float a)
     {
     	this.ambient[0]=red;
@@ -162,16 +222,31 @@ public abstract class GLGeometry extends Geometry
     	this.ambient[3]=a;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getAmbient()
     {
     	return this.ambient;
     }
     
+    /**
+     * 
+     * @param dColor
+     */
     public void setDiffuse(Color dColor)
     {
     	this.diffuse=this.getColorComponants(dColor);
     }
     
+    /**
+     * 
+     * @param red
+     * @param green
+     * @param blue
+     * @param a
+     */
     public void setDiffuse(float red, float green, float blue, float a)
     {
     	this.diffuse[0]=red;
@@ -180,16 +255,31 @@ public abstract class GLGeometry extends Geometry
     	this.diffuse[3]=a;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getDiffuse()
     {
     	return this.diffuse;
     }
     
+    /**
+     * 
+     * @param sColor
+     */
     public void setSpecular(Color sColor)
     {
     	this.specular=this.getColorComponants(sColor);
     }
     
+    /**
+     * 
+     * @param red
+     * @param green
+     * @param blue
+     * @param a
+     */
     public void setSpecular(float red, float green, float blue, float a)
     {
     	this.specular[0]=red;
@@ -198,16 +288,28 @@ public abstract class GLGeometry extends Geometry
     	this.specular[3]=a;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float[] getSpecular()
     {
     	return this.specular;
     }
     
+    /**
+     * 
+     * @param s
+     */
     public void setShininess(float s)
     {
     	this.shininess=s;
     }
     
+    /**
+     * 
+     * @return
+     */
     public float getShininess()
     {
     	return this.shininess;
@@ -215,7 +317,11 @@ public abstract class GLGeometry extends Geometry
 
     // draws the geometry
     // input: GL3 context  gl
-	public void display(GL3 gl)
+    /**
+     * 
+     * @param gl
+     */
+    public void display(GL3 gl)
 	{
 		// use this VBO
 		gl.glBindBuffer(GL.GL_ARRAY_BUFFER, myVBO.vertexBufferObjectID);
@@ -235,7 +341,12 @@ public abstract class GLGeometry extends Geometry
 	
 	// draws the geometry
 	// input: GL3 context gl and a ShaderControl shader
-	public void display(GL3 gl, ShaderControl shader)
+    /**
+     * 
+     * @param gl
+     * @param shader
+     */
+    public void display(GL3 gl, ShaderControl shader)
 	{
 		long offset=0;
 		int attloc=0;

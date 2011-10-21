@@ -11,6 +11,10 @@ package Phi.Math;
 
 import java.util.Arrays;
 
+/**
+ * 
+ * @author phara0h
+ */
 public class MatrixUtils
 {
 
@@ -21,7 +25,17 @@ public class MatrixUtils
 	// create a matrix for orthographic projection
 	// input:   boundaries of the viewing frustrum
 	// returns: 4x4 matrix required to do orthographic projection
-	public static float[] ortho(float left, float right, float bottom, float top, float near, float far)
+    /**
+     * 
+     * @param left
+     * @param right
+     * @param bottom
+     * @param top
+     * @param near
+     * @param far
+     * @return
+     */
+    public static float[] ortho(float left, float right, float bottom, float top, float near, float far)
 	{
 		float[] m=identity();
 		float rl=right-left;
@@ -46,7 +60,15 @@ public class MatrixUtils
      //        zNear The near clipping plane
      //        zFar The far clipping plane
      //returns:4x4 matrix for doing perspective projection
-    public static float[] perspective(float fovy, float aspect, float zNear, float zFar)
+        /**
+         * 
+         * @param fovy
+         * @param aspect
+         * @param zNear
+         * @param zFar
+         * @return
+         */
+        public static float[] perspective(float fovy, float aspect, float zNear, float zFar)
     {
         float fovyr = (float)Math.toRadians(fovy / 2);
         float deltaZ = zFar - zNear;
@@ -74,6 +96,13 @@ public class MatrixUtils
     //			look The direction the camera is looking in
     //			up   The orientation of the camera (which was is up)
     // returns: a 4x4 matrix corresponding to the camera's view
+    /**
+     * 
+     * @param eye
+     * @param look
+     * @param up
+     * @return
+     */
     public static float[] lookAt(float[] eye, float[] look, float[] up)
     {
     	float[] m=identity();
@@ -89,6 +118,10 @@ public class MatrixUtils
     
    // creates an identity matrix
    // return: a 4x4 identity matrix
+    /**
+     * 
+     * @return
+     */
     public static float[] identity()
     {
         float m[] = new float[16];
@@ -100,6 +133,12 @@ public class MatrixUtils
     // multiple 2 4x4 matrices together
     // input:   the 2 matrices
     // returns: the matrix product
+    /**
+     * 
+     * @param m0
+     * @param m1
+     * @return
+     */
     public static float[] multiply(float m0[], float m1[])
     {
         float m[] = new float[16];
@@ -120,6 +159,13 @@ public class MatrixUtils
     // create a matrix to perform a translation
     // input:   the translation (x,y,z)
     // returns: the corresponding 4x4 matrix
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
     public static float[] translation(float x, float y, float z)
     {
         float m[] = identity();
@@ -132,6 +178,11 @@ public class MatrixUtils
     // create a matrix to perform a translation
     // input:   the translation  as a float vector t
     // returns: the corresponding 4x4 matrix
+    /**
+     * 
+     * @param t
+     * @return
+     */
     public static float[] translation(float[] t)
     {
         float m[] = identity();
@@ -144,6 +195,13 @@ public class MatrixUtils
     // create a matrix to perform scaling
     // input:  a scaling factor for each x, y and z dimension
     // returns:the 4x4 matrix that will perform the scaling
+    /**
+     * 
+     * @param s1
+     * @param s2
+     * @param s3
+     * @return
+     */
     public static float[] scale(float s1, float s2, float s3)
     {
     	float m[] = identity();
@@ -156,6 +214,11 @@ public class MatrixUtils
     // create a matrix to perform scaling
     // input:  a single scaling factor for each x, y and z dimension
     // returns:the 4x4 matrix that will perform the scaling
+    /**
+     * 
+     * @param s
+     * @return
+     */
     public static float[] scale(float s)
     {
     	return scale(s,s,s);
@@ -164,6 +227,11 @@ public class MatrixUtils
     // create a matrix to do a rotation about the x-axis
     // input:   the rotation angle, in degrees
     // returns: the 4x4 matrix with which to perform the rotation
+    /**
+     * 
+     * @param angleDeg
+     * @return
+     */
     public static float[] rotationX(float angleDeg)
     {
         float m[] = identity();
@@ -180,6 +248,11 @@ public class MatrixUtils
     // create a matrix to do a rotation about the y-axis
     // input:   the rotation angle, in degrees
     // returns: the 4x4 matrix with which to perform the rotation
+    /**
+     * 
+     * @param angleDeg
+     * @return
+     */
     public static float[] rotationY(float angleDeg)
     {
         float m[] = identity();
@@ -196,6 +269,11 @@ public class MatrixUtils
     // create a matrix to do a rotation about the z-axis
     // input:   the rotation angle, in degrees
     // returns: the 4x4 matrix with which to perform the rotation
+    /**
+     * 
+     * @param angleDeg
+     * @return
+     */
     public static float[] rotationZ(float angleDeg)
     {
     	float m[] = identity();
@@ -214,6 +292,12 @@ public class MatrixUtils
     // input:   angleDeg The rotation angle, in degrees
     //			axis The axis to rotate around
     // returns: the 4x4 matrix with which to perform the rotation
+    /**
+     * 
+     * @param angleDeg
+     * @param axis
+     * @return
+     */
     public static float[] rotation(float angleDeg, float[] axis)
     {
     	float[] m;
@@ -257,7 +341,17 @@ public class MatrixUtils
     // compute the crossproduct of (v1,v2,v3) and (w1,w2,w3)
     // input:   the vectors to be crossed
     // returns: the vector cross-product
-	public static float[] crossprod( float v1, float v2, float v3,
+    /**
+     * 
+     * @param v1
+     * @param v2
+     * @param v3
+     * @param w1
+     * @param w2
+     * @param w3
+     * @return
+     */
+    public static float[] crossprod( float v1, float v2, float v3,
                                float w1, float w2, float w3)
 	{
 	    float crossp[];
@@ -274,7 +368,13 @@ public class MatrixUtils
 	// compute the crossproduct of v and w
     // input:   the vectors to be crossed
     // returns: the vector cross-product
-	public static float[] crossprod( float[] v, float[] w)
+    /**
+     * 
+     * @param v
+     * @param w
+     * @return
+     */
+    public static float[] crossprod( float[] v, float[] w)
 	{
 	    float crossp[];
 	    
@@ -290,7 +390,12 @@ public class MatrixUtils
 	// normalize a vector
 	// input: v, the vector to be normalized
 	// returns:  the normalized vector
-	public static float[] normalize(float[] v)
+        /**
+         * 
+         * @param v
+         * @return
+         */
+        public static float[] normalize(float[] v)
 	{
 	    float norm;
 	    
@@ -307,7 +412,13 @@ public class MatrixUtils
 	// compute the term-by-term product of 2 vectors
 	// input:  v & w, the 2 vectors
 	// returns: the vector (v1*w1,v2*w2,v3*w3)
-	public static float[] prod(float[] v, float[] w)
+        /**
+         * 
+         * @param v
+         * @param w
+         * @return
+         */
+        public static float[] prod(float[] v, float[] w)
 	{
 		float[] p=new float[v.length];
 		for(int i=0;i<v.length;i++)
@@ -321,7 +432,13 @@ public class MatrixUtils
 	// compute the dot product of 2 vectors
 	// input:  2 vectors, v & w
 	// returns: v.w
-	public static float dot(float[] v, float[] w)
+        /**
+         * 
+         * @param v
+         * @param w
+         * @return
+         */
+        public static float dot(float[] v, float[] w)
 	{
 		float d=v[0]*w[0]+v[1]*w[1]+v[2]*w[2];
 		
@@ -331,7 +448,13 @@ public class MatrixUtils
 	// compute the sum of 2 vectors
 	// input:  2 vectors, v & w
 	// returns: v+w	
-	public static float[] add(float[] v, float[] w)
+        /**
+         * 
+         * @param v
+         * @param w
+         * @return
+         */
+        public static float[] add(float[] v, float[] w)
 	{
 		float[] s=new float[v.length];
 		for(int i=0;i<v.length;i++)
@@ -345,7 +468,13 @@ public class MatrixUtils
 	// compute the difference of 2 vectors
 	// input:  2 vectors, v & w
 	// returns: v-w
-	public static float[] sub(float[] v, float[] w)
+        /**
+         * 
+         * @param v
+         * @param w
+         * @return
+         */
+        public static float[] sub(float[] v, float[] w)
 	{
 		float[] s=new float[v.length];
 		for(int i=0;i<v.length;i++)
@@ -360,7 +489,13 @@ public class MatrixUtils
 	// input:   a The scaling factor
 	//			v The vector to be scaled
 	// returns: a*v
-	public static float[] scale(float a, float[] v)
+        /**
+         * 
+         * @param a
+         * @param v
+         * @return
+         */
+        public static float[] scale(float a, float[] v)
 	{
 		float[] s=new float[v.length];
 		for(int i=0;i<v.length;i++)
@@ -373,7 +508,11 @@ public class MatrixUtils
 	
 	// print out a matrix
 	// input: m The matrix to be printed
-	public static void printMatrix(float[] m)
+        /**
+         * 
+         * @param m
+         */
+        public static void printMatrix(float[] m)
 	{
 		for(int i=0;i<m.length;i++)
 		{

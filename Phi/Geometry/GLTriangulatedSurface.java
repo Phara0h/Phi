@@ -19,14 +19,36 @@ package Phi.Geometry;
 import javax.media.opengl.*;
 import Phi.Math.MatrixUtils;
 
+/**
+ * 
+ * @author phara0h
+ */
 public abstract class GLTriangulatedSurface extends GLGeometry
 {    
-	protected int size;
+    /**
+     * 
+     */
+    protected int size;
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     protected int udiv,         	// # of divisions in each direction
                   vdiv;         	// of the mesh
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     protected int vlocation,
     			  nlocation;
     
+    /**
+     * 
+     */
     public GLTriangulatedSurface()
     {
     	this.udiv=0;
@@ -38,6 +60,11 @@ public abstract class GLTriangulatedSurface extends GLGeometry
         this.setMode(GL3.GL_TRIANGLES);
     }
     
+    /**
+     * 
+     * @param udiv
+     * @param vdiv
+     */
     public GLTriangulatedSurface(int udiv, int vdiv)
     {
     	this.udiv=udiv;
@@ -50,6 +77,9 @@ public abstract class GLTriangulatedSurface extends GLGeometry
         this.setMode(GL.GL_TRIANGLES);
     }
     
+    /**
+     * 
+     */
     protected void setVertices()
     {
     	this.vertices=null;
@@ -60,12 +90,29 @@ public abstract class GLTriangulatedSurface extends GLGeometry
     // in  a triangular mesh
     //
     // implement this to create mesh
+    /**
+     * 
+     * @param udiv
+     * @param vdiv
+     */
     protected void setVertices(int udiv, int vdiv)
     {
 
     }
     
  // add the vertices of each triangle and the normal vector at each vertex
+    /**
+     * 
+     * @param x1
+     * @param y1
+     * @param z1
+     * @param x2
+     * @param y2
+     * @param z2
+     * @param x3
+     * @param y3
+     * @param z3
+     */
     protected void addTriangle(   float x1, float y1, float z1,
                                   float x2, float y2, float z2,
                                   float x3, float y3, float z3)
@@ -89,6 +136,18 @@ public abstract class GLTriangulatedSurface extends GLGeometry
         this.vertices[this.vlocation++]=1;
      }
     
+    /**
+     * 
+     * @param x1
+     * @param y1
+     * @param z1
+     * @param x2
+     * @param y2
+     * @param z2
+     * @param x3
+     * @param y3
+     * @param z3
+     */
     protected void addTriangleWithNormal(
     		float x1, float y1, float z1,
             float x2, float y2, float z2,
@@ -114,16 +173,28 @@ public abstract class GLTriangulatedSurface extends GLGeometry
     	this.normals[this.nlocation++]=n[2];
 }
     
+    /**
+     * 
+     * @return
+     */
     public int getUdiv()
     {
         return this.udiv;
     }
     
+    /**
+     * 
+     * @return
+     */
     public int getVdiv()
     {
         return this.vdiv;
     }
     
+    /**
+     * 
+     * @return
+     */
     public int getSize()
     {
         return this.size;
