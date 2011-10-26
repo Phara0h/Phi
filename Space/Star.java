@@ -1,6 +1,5 @@
 package Phi.Space;
 
-import Phi.Space.SpaceObjectAttrib;
 import java.util.ArrayList;
 import java.util.Iterator;
 
