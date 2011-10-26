@@ -2,6 +2,7 @@ package Phi.Geometry;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /*
  * To change this template, choose Tools | Templates and open the template in
@@ -11,13 +12,8 @@ import java.util.ArrayList;
  *
  * @author phara0h
  */
-public class GLObjGeometry extends GLGeometry
+public class GLObjGeometry extends GLTriangulatedSurface
 {
-
-
-    
-    
-
     public String GroupName;
     public ArrayList<Face> faces = new ArrayList<Face>();
     public ArrayList<Vert> geo = new ArrayList<Vert>();
@@ -29,17 +25,11 @@ public class GLObjGeometry extends GLGeometry
     public GLObjGeometry()
     {
         this.vertices = new float[(faces.size()*4)*4];
-        
+        this.normals = new float[(faces.size()*4)*4];
+        this.texcoordinates = new float[(faces.size()*4)*4];
     }
     
-    /**
-     * 
-     */
-    @Override
-    public void setVertices()
-    {
-        
-    }
+
     
     /**
      * 
@@ -75,22 +65,44 @@ public class GLObjGeometry extends GLGeometry
         v.y = y;
         v.z = z;
         v.w = w;
-        normal.add(v);
+        texture.add(v);
     }
     
-    /**
-     * 
-     * @param v1
-     * @param v2
-     * @param v3
-     * @param v4
-     */
-    public void AddFace(Vert geo, Vert text, Vert normal)
+
+    public void Construct()
     {
-        Face f = new Face();
-        f.geo = geo;
-        f.normal = normal;
-        f.texture = text;
-        faces.add(f);
+        setGeoVerts();
+        setNormals();
+        setTextureCords();
+    }
+
+    private void setGeoVerts()
+    {
+        this.vertices = new float[(faces.size()*16)*3];
+        int num = 0;
+        for (Iterator<Face> it = faces.iterator(); it.hasNext();)
+        {
+            Face f = it.next();
+            for (int i = 0; i < f.face.length; i++)
+            {
+                Vert v = new Vert();
+                v = normal.get(f.face[i]-1);
+                this.vertices[num++] = v.x;
+                this.vertices[num++] = v.y;
+                this.vertices[num++] = v.z;
+                this.vertices[num++] = v.w;
+            }
+            
+            
+        }
+    }
+    private void setNormals()
+    {
+        
+    }
+
+    private void setTextureCords()
+    {
+        
     }
 }

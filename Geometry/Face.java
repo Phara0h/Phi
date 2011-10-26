@@ -10,16 +10,15 @@ package Phi.Geometry;
  */
 public class Face
 {
-    /**
-     * 
-     */
-    public Vert geo;
-    /**
-     * 
-     */
-    public Vert texture;
-    /**
-     * 
-     */
-    public Vert normal;
+    public int[] face = new int[12];
+    private int num = 0;
+    
+    public void addVertex(int v)
+    {
+        if(num < 12)
+        {
+            face[num] = v;
+            num++;
+        }
+    }
 }
