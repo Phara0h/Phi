@@ -148,7 +148,7 @@ public class GlobeLight extends Light
      * @param gl
      * @param shader
      */
-    public void display(GL3 gl,ShaderControl shader)
+    public void display(GL3 gl,PhiShader shader)
     {
     	gl.glUniform4fv(shader.uniform.get("AmbientProduct").intValue(),
     			1,

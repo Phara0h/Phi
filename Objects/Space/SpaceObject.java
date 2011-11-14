@@ -1,4 +1,4 @@
-package Phi.Space;
+package Phi.Objects.Space;
 
 import java.awt.Color;
 import javax.media.opengl.GL3;
@@ -146,7 +146,7 @@ public abstract class SpaceObject extends GLParametricSurface
      * @param attrib
      * @param timeScale
      */
-    public void display(GL3 gl, int[] ids, ShaderControl shader, SpaceObjectAttrib attrib, int timeScale)
+    public void display(GL3 gl, int[] ids, PhiShader shader, SpaceObjectAttrib attrib, int timeScale)
     {
         
         if(light != null)

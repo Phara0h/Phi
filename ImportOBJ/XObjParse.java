@@ -3,9 +3,11 @@ package Phi.ImportOBJ;
 
 import java.io.*;
 import java.util.ArrayList;
-import Phi.Geometry.*;
-import Phi.Geometry.GLObjGeometry;
 import java.util.Iterator;
+import Phi.*;
+import Phi.Geometry.Face;
+import Phi.Geometry.PhiObjGeometry;
+import Phi.Geometry.Vert;
 /*
  * To change this template, choose Tools | Templates and open the template in
  * the editor.
@@ -58,8 +60,12 @@ public class XObjParse
     private static final String SpecialPoint = "sp";
     private static final String EndStatement = "end";
     // Vars
-    private ArrayList<GLObjGeometry> geomtryObjects_m = new ArrayList<GLObjGeometry>();
+    private ArrayList<PhiObjGeometry> geomtryObjects_m = new ArrayList<PhiObjGeometry>();
+    private boolean hasV, hasVN, hasVT, facesEnd;
+    
     // Options
+    public boolean multiObject = true; // set to false if you want all objects merged.
+    
     /**
      * 
      */
@@ -77,7 +83,6 @@ public class XObjParse
     public void OpenFile(String fpath)
     {
         String data;
-        NewGeoObj(fpath);
         try
         {
             FileInputStream fstream = new FileInputStream(fpath);
@@ -92,29 +97,49 @@ public class XObjParse
 
                     for (int i = 0; i < splitData.length; i++)
                     {
-                        System.out.print(splitData[i] + "\n");
+                        //System.out.print(splitData[i] + "\n");
                         ObjSwitcher(i, splitData);
                     }
                 }
+                else if(!data.isEmpty() && data.charAt(0) == '#')
+                {
+                     String[] splitData = data.split("\\s+");
+
+                    if(splitData.length > 1 && "object".equals(splitData[1]))
+                    {
+                        if(multiObject || geomtryObjects_m.size() < 1)
+                        NewGeoObj(splitData[2]);
+                        System.out.print(splitData[2] + "\n");
+                    }
+                       
+                   
+                }
 
             }
+            
+
+
 
             dstream.close();
+            fstream.close();
+            breader.close();
         }
         catch (Exception e)
         {
+            
         }
+            for (Iterator<PhiObjGeometry> it = geomtryObjects_m.iterator(); it.hasNext();) 
+            {
+                PhiObjGeometry gLObjGeometry = it.next();
+                gLObjGeometry.Construct();
+                
+            }
         
-        for (Iterator<GLObjGeometry> it = geomtryObjects_m.iterator(); it.hasNext();)
-        {
-            GLObjGeometry gLObjGeometry = it.next();        
-            gLObjGeometry.Construct();
-        }
     }
     
-    public GLObjGeometry[] GetObjects()
+    public PhiObjGeometry[] GetObjects()
     {
-        GLObjGeometry[] temp = new GLObjGeometry[geomtryObjects_m.size()];
+        PhiObjGeometry[] temp = new PhiObjGeometry[geomtryObjects_m.size()];
         for (int i = 0; i < temp.length; i++)
         {
             temp[i] = geomtryObjects_m.get(i);
@@ -127,25 +152,21 @@ public class XObjParse
     {
         if (s[i] == null ? GroupName == null : s[i].equals(GroupName))
         {
-            if (groups = true && geomtryObjects_m.size() > 0)
-            {
-                NewGeoObj(s[i]);
-            }
-            else if (geomtryObjects_m.size() <= 0)
-            {
-                NewGeoObj(s[i]);
-            }
+             
         }
         else if (s[i] == null ? GeometicVertices == null : s[i].equals(GeometicVertices))
         {
+            hasV = true;
             AddGeoVert(new float[]{Float.parseFloat(s[i+1]), Float.parseFloat(s[i+2]), Float.parseFloat(s[i+3])});
         }
         else if (s[i] == null ? VertexNormals == null : s[i].equals(VertexNormals))
         {
+            hasVN = true;
             AddNorVert(new float[]{Float.parseFloat(s[i+1]), Float.parseFloat(s[i+2]), Float.parseFloat(s[i+3])});
         }
         else if (s[i] == null ? TextureVertices == null : s[i].equals(TextureVertices))
         {
+            hasVT = true;
             AddTexVert(new float[]{Float.parseFloat(s[i+1]), Float.parseFloat(s[i+2]), Float.parseFloat(s[i+3])});
         }
         else if (s[i] == null ? Face == null : s[i].equals(Face))
@@ -153,20 +174,20 @@ public class XObjParse
             if(s[i+1].lastIndexOf("/") != -1)
             {
                 Face f = new Face();
-                
-                for (int j = 1; j < 5; j++) 
+                f.init(9);
+                for (int j = 1; j < 4; j++) 
                 {
                     String[] face = s[i+j].split("/");
                     Vert v = new Vert();
                     
                     if(!face[0].isEmpty())
-                        f.addVertex(Integer.parseInt(face[0]));
+                        f.addFaceIndex(Integer.parseInt(face[0]));
                     
                     if(!face[1].isEmpty())
-                        f.addVertex(Integer.parseInt(face[1]));
+                        f.addFaceIndex(Integer.parseInt(face[1]));
                     
                     if(!face[2].isEmpty())
-                        f.addVertex(Integer.parseInt(face[2]));   
+                        f.addFaceIndex(Integer.parseInt(face[2]));   
                 }                
                 
                 AddFace(f);
@@ -177,32 +198,32 @@ public class XObjParse
 
     private void NewGeoObj(String s)
     {
-        GLObjGeometry temp = new GLObjGeometry();
+        PhiObjGeometry temp = new PhiObjGeometry();
         temp.GroupName = s;
         geomtryObjects_m.add(temp);
     }
     
     private void AddGeoVert(float[] v)
     {
-        GLObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
+        PhiObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
         temp.AddGeometryVert(v[0], v[1], v[2], 1);
     }
 
     private void AddNorVert(float[] f)
     {
-        GLObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
+        PhiObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
         temp.AddNormalVert(f[0], f[1], f[2], 1);
     }
 
     private void AddTexVert(float[] f)
     {
-        GLObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
+        PhiObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
         temp.AddTextureVert(f[0], f[1], f[2], 1);
     }
     
     private void AddFace(Face f)
     {
-         GLObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
+         PhiObjGeometry temp = geomtryObjects_m.get(geomtryObjects_m.size()-1);
          temp.faces.add(f);
     }
 }

@@ -1,4 +1,4 @@
-package Phi.Space;
+package Phi.Objects.Space;
 
 /**
  *

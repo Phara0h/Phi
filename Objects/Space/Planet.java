@@ -1,6 +1,6 @@
-package Phi.Space;
+package Phi.Objects.Space;
 
-import Phi.Space.*;
+import Phi.Objects.Space.*;
 import java.util.ArrayList;
 
 /**

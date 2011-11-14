@@ -18,10 +18,10 @@ public class GLTexture
 {
 
     private String filePath;
-    /**
-     * 
-     */
+    private ByteBuffer texture;
+    private BufferedImage image;
     public int index;
+    
     
     /**
      * 
@@ -37,9 +37,9 @@ public class GLTexture
      * @param gl
      * @param textures
      */
-    public void SetTexture(GL gl, int[] textures)
+    public void SetTexture(GL gl, int[] textures, int index)
     {
-        index = textures.length-1;
+        this.index = index;
         gl.glGenTextures(1,textures,index);
         
         File file = new File(filePath);
@@ -84,7 +84,9 @@ public class GLTexture
         }
 
         aTexture.flip();
-
+        
+        texture = aTexture;
+        image = buff;
         // now bind the texture
         gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);
         gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGB, buff.getWidth(), buff.getHeight(),
@@ -99,5 +101,14 @@ public class GLTexture
         
         // use the texture
         gl.glBindTexture(GL.GL_TEXTURE_2D,textures[index]);
+    }
+    
+    public void Use(GL gl,int[] textures)
+    {
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textures[index]);
+        gl.glTexImage2D(GL.GL_TEXTURE_2D, 0, GL.GL_RGB, image.getWidth(), image.getHeight(),
+                0, GL.GL_RGB, GL.GL_UNSIGNED_BYTE, texture);
+        gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, GL.GL_REPEAT);
+        gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL.GL_REPEAT);
     }
 }

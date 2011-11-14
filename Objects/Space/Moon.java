@@ -1,8 +1,8 @@
-package Phi.Space;
-import Phi.Space.*;
+package Phi.Objects.Space;
+import Phi.Objects.Space.*;
 import javax.media.opengl.GL3;
 import Phi.Math.MatrixUtils;
-import Phi.ShaderControl;
+import Phi.PhiShader;
 
 /**
  *
@@ -39,7 +39,7 @@ public class Moon extends SpaceObject
      * @param timeScale
      */
     @Override
-    public void display(GL3 gl, int[] ids, ShaderControl shader, SpaceObjectAttrib attrib, int timeScale)
+    public void display(GL3 gl, int[] ids, PhiShader shader, SpaceObjectAttrib attrib, int timeScale)
     {
         
         if(light != null)

@@ -16,14 +16,16 @@ public class GlTextureController
      */
     public ArrayList<GLTexture> textures;
     private int [] textureArray;
-        
+    public int size;
+    public int count;
     /**
      * 
      */
-    public GlTextureController()
+    public GlTextureController(int numberOfTextures)
     {
+        size = numberOfTextures;
         textures = new ArrayList<GLTexture>();
-        textureArray = new int[100];
+        textureArray = new int[size];
     }
     
     /**
@@ -33,6 +35,7 @@ public class GlTextureController
     public void AddTexture(GLTexture e)
     {
         textures.add(e);
+        count++;
     }
     
     /**
@@ -43,8 +46,9 @@ public class GlTextureController
     public void AddNewTexture(GL gl, String filepath)
     {
       GLTexture texture = new GLTexture(filepath);
-      texture.SetTexture(gl, textureArray);
+      texture.SetTexture(gl, textureArray, count);
       textures.add(texture);
+      count++;
     }
     
     /**
@@ -67,6 +71,12 @@ public class GlTextureController
     {
         //code
         return null;
+    }
+    
+    public void UseTexture (GL gl, int index)
+    {
+        if(textures.size() > index)
+        textures.get(index).Use(gl, textureArray);
     }
     
 }
